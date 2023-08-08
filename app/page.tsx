@@ -13,6 +13,7 @@ const HomePage = () => {
   // const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [emailStatus, setEmailStatus] = useState(true)
 
   const openModal = () => {
     setIsModalOpen(true)
@@ -33,19 +34,22 @@ const HomePage = () => {
   // const handleSetName = (e: ChangeEvent<HTMLInputElement>) => { setName(e.target.value) }
   const handleSetEmail = (e: ChangeEvent<HTMLInputElement>) => { setEmail(e.target.value) }
   const handleSetPassword = (e: ChangeEvent<HTMLInputElement>) => { setPassword(e.target.value) }
+  // const handleEmailStatus = (e: ChangeEvent) => 
 
-  const isEmailValid = (email: string): boolean => {
-    const emailRegex: RegExp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return emailRegex.test(email);
-  }
-  
   const handleLogin = async () => {
+    // let err: string
     const loading = toast.loading("signing you in...")
     
     const status = await LoginHandler({email, password})
     if(!status.success) {
+      if(status.fields.includes("email")) {
+        toast("email is missing")
+        setEmailStatus(!status)
+      }
+            
       toast.error(status.message, {id: loading})
     } else {
+      setEmailStatus(!status)
       toast.success(status.message, {id: loading})
     }
 
@@ -54,7 +58,6 @@ const HomePage = () => {
   
   return (
     <div className="flex flex-col gap-10 lg:flex-row lg:gap-20 p-5 justify-center items-center min-h-screen bg-neutral-950 text-white">
-      <Toaster />
       <div className="text-4xl border-white border-b-4 w-full lg:border-none lg:text-7xl font-bold basis-1/2">
         <h1 className="lg:text-center text-left">
           twitter
@@ -84,6 +87,12 @@ const HomePage = () => {
       </div>
 
       <SignupModal isOpen={isSignupOpen} onClose={closeSignup} />
+      {/* {isSignupOpen && (
+        <>
+          <SignupModal isOpen={isSignupOpen} onClose={closeSignup} />
+          <Toaster />
+        </>
+      )} */}
 
       {/* </SignupModal> */}
       
@@ -94,7 +103,9 @@ const HomePage = () => {
           </div> */}
           <div className="flex flex-col gap-5">
             {/* <input className="p-5 outline-none border-2 rounded-xl border-white bg-neutral-950 focus:border-blue-500 transition-all" value={name} onChange={handleSetName} type="text" name="name" id="name" placeholder="name" /> */}
-            <input className="p-5 outline-none border-2 rounded-xl border-white bg-neutral-950 focus:border-blue-500 transition-all" value={email} onChange={handleSetEmail } type="email" name="email" id="email" placeholder="email" />
+            <input 
+            className={`p-5 outline-none border-2 rounded-xl ${emailStatus ? `border-white` : `border-red-800`} bg-neutral-950 focus:border-blue-500 transition-all`}
+            value={email} onChange={handleSetEmail } type="email" name="email" id="email" placeholder="email" />
             <input className="p-5 outline-none border-2 rounded-xl border-white bg-neutral-950 focus:border-blue-500 transition-all" value={password} onChange={handleSetPassword} type="password" name="password" id="password" placeholder="password" />
           </div>
           <div className="w-full rounded-full shadow-xl bg-blue-500 hover:bg-blue-300 text-white font-bold text-2xl p-5 transition-color">
@@ -108,6 +119,7 @@ const HomePage = () => {
 
         </div>
       </Modal>
+      <Toaster />
     </div>
   )
 }

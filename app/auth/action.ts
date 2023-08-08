@@ -1,5 +1,7 @@
 "use server"
 
+import CheckEmail from "@/pkg/checkEmail"
+
 interface LoginCredentials {
     email: string
     password: string
@@ -17,38 +19,72 @@ interface Result {
     message: string
 }
 
-const LoginHandler = async ({email, password}: LoginCredentials): Promise<Result> => {
+interface NewResult {
+    success: boolean
+    message: string
+    fields: string[]
+}
+
+const LoginHandler = async ({email, password}: LoginCredentials): Promise<NewResult> => {
     let errors: string[] = []
-    if (email === "") {
+    const emailStatus = CheckEmail(email)
+    if (email === "" || !emailStatus) {
         errors.push("emails")
-    }
+    } 
     if (password === "") {
         errors.push("password")
     }
 
-    let formattedStringLoop = "";
-
-    for (let i = 0; i < errors.length; i++) {
-      formattedStringLoop += errors[i];
-      if (i < errors.length - 1) {
-        formattedStringLoop += " & ";
-      }
-    }
-
-    formattedStringLoop += " are required";
-    if (errors.length != 0) {
-        const res: Result = {
+    if(errors.length > 0) {
+        const res: NewResult = {
             success: false,
-            message: formattedStringLoop
+            message: "data invalid",
+            fields: errors
         }
         return res
     } else {
-        const res: Result = {
+        const res: NewResult = {
             success: true,
-            message: "signed in"
+            message: "sucess",
+            fields: []
         }
         return res
     }
+
+    // if(!emailStatus)
+
+    // let formattedStringLoop = "";
+    
+    // for (let i = 0; i < errors.length; i++) {
+    //     formattedStringLoop += errors[i];
+    //     if (i < errors.length - 1) {
+    //         formattedStringLoop += " & ";
+    //     }
+    // }
+    
+    
+    // formattedStringLoop += " are required";
+    // if (errors.length != 0) {
+    //     const res: Result = {
+    //         success: false,
+    //         message: formattedStringLoop
+    //     }
+    //     return res
+    // } else {
+    //     const emailStatus = CheckEmail(email)
+    //     if(!emailStatus) {
+    //         const res: Result = {
+    //             success: false,
+    //             message: "email is not valid"
+    //         }
+    //         return res
+    //     }
+    //     const res: Result = {
+    //         success: true,
+    //         message: "signed in"
+    //     }
+    //     return res
+    // }
 }
 
 const SignupHandler = async ({email, password, username, name}: SignupCredentials): Promise<Result> => {

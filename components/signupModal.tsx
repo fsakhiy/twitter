@@ -40,8 +40,8 @@ const SignupModal: React.FC<Modal> = ({isOpen, onClose}) => {
     
     return (
         <Modal isOpen={isOpen} onClose={onClose} title="Signup">
-            <Toaster />
             <div className="flex flex-col gap-10 ">
+            {/* <Toaster /> */}
                 <div className="flex flex-col gap-5">
                     {/* <input className="p-5 outline-none border-2 rounded-xl border-white bg-neutral-950 focus:border-blue-500 transition-all" value={name} onChange={handleSetName} type="text" name="name" id="name" placeholder="name" /> */}
                     <input className="p-5 outline-none border rounded-xl border-neutral-300 bg-neutral-950 focus:border-blue-500 transition-all" value={value.name} onChange={handleInputChange} type="text" name="name" id="name" placeholder="name" />
@@ -50,7 +50,7 @@ const SignupModal: React.FC<Modal> = ({isOpen, onClose}) => {
                     <input className="p-5 outline-none border rounded-xl border-neutral-300 bg-neutral-950 focus:border-blue-500 transition-all" value={value.password} onChange={handleInputChange} type="password" name="password" id="password" placeholder="password" />
                 </div>
                 <div className="w-full rounded-full shadow-xl bg-blue-500 hover:bg-blue-300 text-white font-bold text-2xl p-5 transition-color">
-                    <button className="space-between flex flex-row items-center w-full">
+                    <button onClick={signup} className="space-between flex flex-row items-center w-full">
                         <div className="flex w-full items-center">
                             <span className="flex-grow">Sign Up </span>
                             <LoginIcon />
