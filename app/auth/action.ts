@@ -9,7 +9,7 @@ interface SignupCredentials {
     name: string
     email: string
     username: string
-    
+    password: string
 }
 
 interface Result {
@@ -51,4 +51,45 @@ const LoginHandler = async ({email, password}: LoginCredentials): Promise<Result
     }
 }
 
-export default LoginHandler
+const SignupHandler = async ({email, password, username, name}: SignupCredentials): Promise<Result> => {
+    let errors: string[] = []
+        
+    if (email === "") {
+        errors.push("emails")
+    }
+    if (password === "") {
+        errors.push("password")
+    }
+    if (username === "") {
+        errors.push("username")
+    }
+    if (name === "") {
+        errors.push("name")
+    } 
+    
+    let formattedStringLoop = "";
+
+    for (let i = 0; i < errors.length; i++) {
+      formattedStringLoop += errors[i];
+      if (i < errors.length - 1) {
+        formattedStringLoop += " & ";
+      }
+    }
+
+    formattedStringLoop += " are required";
+    if (errors.length != 0) {
+        const res: Result = {
+            success: false,
+            message: formattedStringLoop
+        }
+        return res
+    } else {
+        const res: Result = {
+            success: true,
+            message: "signed in"
+        }
+        return res
+    }
+}
+
+export {LoginHandler, SignupHandler}

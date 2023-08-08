@@ -3,11 +3,13 @@ import { useState, ChangeEvent } from "react"
 import Modal from "@/components/modal"
 import toast, { Toaster } from "react-hot-toast"
 import LoginIcon from '@mui/icons-material/Login';
-import LoginHandler from '@/app/auth/action'
+import {LoginHandler} from '@/app/auth/action'
+import SignupModal from "@/components/signupModal";
 
 const HomePage = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isSignupOpen, setIsSignupOpen] = useState(false)
   // const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -18,6 +20,14 @@ const HomePage = () => {
 
   const closeModal = () => {
     setIsModalOpen(false)
+  }
+
+  const openSignup = () => {
+    setIsSignupOpen(true)
+  }
+
+  const closeSignup = () => {
+    setIsSignupOpen(false)
   }
 
   // const handleSetName = (e: ChangeEvent<HTMLInputElement>) => { setName(e.target.value) }
@@ -32,22 +42,6 @@ const HomePage = () => {
   const handleLogin = async () => {
     const loading = toast.loading("signing you in...")
     
-    // if(email === "" || password === "") {
-    //   toast.error("please fill all required fields", {id: loading})
-    //   return
-    // }
-    
-    // if (!isEmailValid(email)) {
-    //   toast.error("email is not valid", {id: loading})
-    //   return
-    // }
-
-    // if(email === "test@twitter.com" && password === "12345678") {
-    //   toast.success("logged in!", {id:loading})
-    // } else {
-    //   toast.error("invalid credentials", {id: loading})    
-    // }
-
     const status = await LoginHandler({email, password})
     if(!status.success) {
       toast.error(status.message, {id: loading})
@@ -76,7 +70,7 @@ const HomePage = () => {
           <div className="flex flex-col gap-5 w-full max-w-md">
             <button className="rounded-full p-3 bg-white border text-black hover:bg-neutral-300 transition-all font-bold text-xl">Sign up with google</button>
             <button className="rounded-full p-3 bg-white border text-black hover:bg-neutral-300 transition-all font-bold text-xl">Sign up with apple</button> 
-            <button className="rounded-full p-3 bg-white border text-black hover:bg-neutral-300 transition-all font-bold text-xl">Create an account</button>
+            <button onClick={openSignup} className="rounded-full p-3 bg-white border text-black hover:bg-neutral-300 transition-all font-bold text-xl">Create an account</button>
           </div>
         </div>
         <div className="flex flex-col gap-3 text-lg font-semibold w-full items-center lg:items-start">
@@ -88,6 +82,11 @@ const HomePage = () => {
           </div>
         </div>
       </div>
+
+      <SignupModal isOpen={isSignupOpen} onClose={closeSignup} />
+
+      {/* </SignupModal> */}
+      
       <Modal isOpen={isModalOpen} onClose={closeModal} title="Sign in">
         <div className="flex flex-col gap-10 ">
           {/* <div className="font-bold text-3xl">
