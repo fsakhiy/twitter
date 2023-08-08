@@ -3,11 +3,12 @@ import { useState, ChangeEvent } from "react"
 import Modal from "@/components/modal"
 import toast, { Toaster } from "react-hot-toast"
 import LoginIcon from '@mui/icons-material/Login';
+import LoginHandler from '@/app/auth/action'
 
 const HomePage = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [name, setName] = useState("")
+  // const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
@@ -19,7 +20,7 @@ const HomePage = () => {
     setIsModalOpen(false)
   }
 
-  const handleSetName = (e: ChangeEvent<HTMLInputElement>) => { setName(e.target.value) }
+  // const handleSetName = (e: ChangeEvent<HTMLInputElement>) => { setName(e.target.value) }
   const handleSetEmail = (e: ChangeEvent<HTMLInputElement>) => { setEmail(e.target.value) }
   const handleSetPassword = (e: ChangeEvent<HTMLInputElement>) => { setPassword(e.target.value) }
 
@@ -28,31 +29,40 @@ const HomePage = () => {
     return emailRegex.test(email);
   }
   
-  const handleLogin = () => {
+  const handleLogin = async () => {
     const loading = toast.loading("signing you in...")
     
-    if(name === "" || email === "" || password === "") {
-      toast.error("please fill all required fields", {id: loading})
-      return
-    }
+    // if(email === "" || password === "") {
+    //   toast.error("please fill all required fields", {id: loading})
+    //   return
+    // }
     
-    if (!isEmailValid(email)) {
-      toast.error("email is not valid", {id: loading})
-      return
+    // if (!isEmailValid(email)) {
+    //   toast.error("email is not valid", {id: loading})
+    //   return
+    // }
+
+    // if(email === "test@twitter.com" && password === "12345678") {
+    //   toast.success("logged in!", {id:loading})
+    // } else {
+    //   toast.error("invalid credentials", {id: loading})    
+    // }
+
+    const status = await LoginHandler({email, password})
+    if(!status.success) {
+      toast.error(status.message, {id: loading})
+    } else {
+      toast.success(status.message, {id: loading})
     }
 
-    if(name === "twitter" && email === "test@twitter.com" && password === "12345678") {
-      toast.success("logged in!", {id:loading})
-    } else {
-      toast.error("invalid credentials", {id: loading})    
-    }
+    
   }
   
   return (
     <div className="flex flex-col gap-10 lg:flex-row lg:gap-20 p-5 justify-center items-center min-h-screen bg-neutral-950 text-white">
       <Toaster />
-      <div className="text-4xl border-white border-b-4 w-full lg:border-none lg:text-7xl font-bold items-center lg:items-end basis-1/2">
-        <h1 className="lg:text-right text-center">
+      <div className="text-4xl border-white border-b-4 w-full lg:border-none lg:text-7xl font-bold basis-1/2">
+        <h1 className="lg:text-center text-left">
           twitter
         </h1>
       </div>
@@ -84,7 +94,7 @@ const HomePage = () => {
             Signup
           </div> */}
           <div className="flex flex-col gap-5">
-            <input className="p-5 outline-none border-2 rounded-xl border-white bg-neutral-950 focus:border-blue-500 transition-all" value={name} onChange={handleSetName} type="text" name="name" id="name" placeholder="name" />
+            {/* <input className="p-5 outline-none border-2 rounded-xl border-white bg-neutral-950 focus:border-blue-500 transition-all" value={name} onChange={handleSetName} type="text" name="name" id="name" placeholder="name" /> */}
             <input className="p-5 outline-none border-2 rounded-xl border-white bg-neutral-950 focus:border-blue-500 transition-all" value={email} onChange={handleSetEmail } type="email" name="email" id="email" placeholder="email" />
             <input className="p-5 outline-none border-2 rounded-xl border-white bg-neutral-950 focus:border-blue-500 transition-all" value={password} onChange={handleSetPassword} type="password" name="password" id="password" placeholder="password" />
           </div>
