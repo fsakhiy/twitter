@@ -1,7 +1,7 @@
 import Modal from "@/components/modal"
 import {ChangeEvent, useState} from 'react'
 import LoginIcon from '@mui/icons-material/Login'
-import { SignupHandler } from "@/app/auth/action"
+import { LoginHandler } from "@/app/auth/action"
 import toast, { Toaster } from "react-hot-toast"
 import CheckEmail from "@/pkg/checkEmail"
 
@@ -11,23 +11,17 @@ interface Modal {
 }
 
 interface StateType {
-    name: string,
-    username: string,
     email: string,
     password: string
 }
 
-const SignupModal: React.FC<Modal> = ({isOpen, onClose}) => {
+const LoginModal: React.FC<Modal> = ({isOpen, onClose}) => {
     const [value, setValue] = useState({
-        name: '',
-        username: '',
         email: '',
         password: '',
     })
 
     const [validation, setValidation] = useState({
-        nameValidation: false,
-        usernameValidation: false,
         emailValidation: false,
         passwordValidation: false,
     })
@@ -40,13 +34,10 @@ const SignupModal: React.FC<Modal> = ({isOpen, onClose}) => {
             [name]: value,
         }))
 
-        if (name === 'name') {
-            updateValidation('name', value.trim().toLowerCase() === '');
-        } else if (name === 'username') {
-            updateValidation('username', value.trim().toLowerCase() === '');
-        } else if (name === 'email') {       
+        if (name === 'email') {       
             updateValidation('email', value.trim().toLowerCase() === '');
-        } else if (name === 'password') {
+        }
+        if (name === 'password') {
             updateValidation('password', value.trim().toLowerCase() === '');
         }       
     }
@@ -58,7 +49,7 @@ const SignupModal: React.FC<Modal> = ({isOpen, onClose}) => {
         }))
     }
 
-    const signup = async () => {
+    const login = async () => {
         const loading = toast.loading('Signing you up');
         
         const emailStatus = CheckEmail(value.email)
@@ -66,12 +57,6 @@ const SignupModal: React.FC<Modal> = ({isOpen, onClose}) => {
             updateValidation('email', true)
         } 
 
-        if(value.name == '') {
-            updateValidation('name', value.name.trim().toLocaleLowerCase() === '')
-        } 
-        if(value.username == '') {
-            updateValidation('username', value.username.trim().toLocaleLowerCase() === '')
-        } 
         if(value.email == '') {
             updateValidation('email', value.email.trim().toLocaleLowerCase() === '')
         } 
@@ -80,7 +65,7 @@ const SignupModal: React.FC<Modal> = ({isOpen, onClose}) => {
         } 
                 
         // Continue with signup process
-        const status = await SignupHandler(value);
+        const status = await LoginHandler(value);
         if (!status.success) {
           toast.error(status.message, { id: loading });
         } else {
@@ -97,15 +82,13 @@ const SignupModal: React.FC<Modal> = ({isOpen, onClose}) => {
             <div className="flex flex-col gap-10 ">
             {/* <Toaster /> */}
                 <div className="flex flex-col gap-5">
-                    <input className={`p-5 outline-none border rounded-xl  bg-neutral-950 ${validation.nameValidation ? `border-red-500` : `border-neutral-300`} focus:border-blue-500 transition-all`} value={value.name} onChange={handleInputChange} type="text" name="name" id="name" placeholder="name" />
-                    <input className={`p-5 outline-none border rounded-xl ${validation.usernameValidation ? `border-red-500` : `border-neutral-300`} bg-neutral-950 focus:border-blue-500 transition-all` }value={value.username} onChange={handleInputChange} type="text" name="username" id="username" placeholder="username" />
                     <input className={`p-5 outline-none border rounded-xl ${validation.emailValidation ? `border-red-500` : `border-neutral-300`} bg-neutral-950 focus:border-blue-500 transition-all` } value={value.email} onChange={handleInputChange} type="email" name="email" id="email" placeholder="email" />
                     <input className={`p-5 outline-none border rounded-xl ${validation.passwordValidation ? `border-red-500` : `border-neutral-300`} bg-neutral-950 focus:border-blue-500 transition-all` } value={value.password} onChange={handleInputChange} type="password" name="password" id="password" placeholder="password" />
                 </div>
                 <div className="w-full rounded-full shadow-xl bg-blue-500 hover:bg-blue-300 text-white font-bold text-2xl p-5 transition-color">
-                    <button onClick={signup} className="space-between flex flex-row items-center w-full">
+                    <button onClick={login} className="space-between flex flex-row items-center w-full">
                         <div className="flex w-full items-center">
-                            <span className="flex-grow">Sign Up </span>
+                            <span className="flex-grow">Login </span>
                             <LoginIcon />
                         </div>
                     </button>
@@ -116,4 +99,4 @@ const SignupModal: React.FC<Modal> = ({isOpen, onClose}) => {
     )
 }
 
-export default SignupModal 
+export default LoginModal
