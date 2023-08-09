@@ -34,15 +34,15 @@ const HomePage = () => {
       </div>
       <div className="flex flex-col gap-10 w-full items-center lg:items-start basis-1/2">
         <div>
-          <h1 className="text-6xl font-bold">Happening now</h1>
+          <h1 className="text-4xl lg:text-6xl font-bold">Happening now</h1>
         </div>
         <div className="flex flex-col w-full items-center lg:items-start">
-          <h2 className="text-3xl font-bold">Join today.</h2>
+          <h2 className="text-2xl lg:text-3xl font-bold">Join today.</h2>
           <br />
           <div className="flex flex-col gap-5 w-full max-w-md">
-            <button className="rounded-full p-3 bg-white border text-black hover:bg-neutral-300 transition-all font-bold text-xl">Sign up with google</button>
-            <button className="rounded-full p-3 bg-white border text-black hover:bg-neutral-300 transition-all font-bold text-xl">Sign up with apple</button> 
-            <button onClick={openSignup} className="rounded-full p-3 bg-white border text-black hover:bg-neutral-300 transition-all font-bold text-xl">Create an account</button>
+            <button className="rounded-full p-2 lg:p-3 bg-white border text-black hover:bg-neutral-300 transition-all font-bold text-xl">Sign up with google</button>
+            <button className="rounded-full p-2 lg:p-3 bg-white border text-black hover:bg-neutral-300 transition-all font-bold text-xl">Sign up with apple</button> 
+            <button onClick={openSignup} className="rounded-full p-2 lg:p-3 bg-white border text-black hover:bg-neutral-300 transition-all font-bold text-xl">Create an account</button>
           </div>
         </div>
         <div className="flex flex-col gap-3 text-lg font-semibold w-full items-center lg:items-start">
