@@ -50,7 +50,7 @@ const LoginModal: React.FC<Modal> = ({isOpen, onClose}) => {
     }
 
     const login = async () => {
-        const loading = toast.loading('Signing you up');
+        const loading = toast.loading('logging you in');
         
         const emailStatus = CheckEmail(value.email)
         if (!emailStatus) {
@@ -78,7 +78,7 @@ const LoginModal: React.FC<Modal> = ({isOpen, onClose}) => {
     if(!isOpen) return null
     
     return (
-        <Modal isOpen={isOpen} onClose={onClose} title="Signup">
+        <Modal isOpen={isOpen} onClose={onClose} title="Login">
             <div className="flex flex-col gap-10 ">
             {/* <Toaster /> */}
                 <div className="flex flex-col gap-5">
