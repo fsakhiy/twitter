@@ -102,6 +102,8 @@ const SignupHandler = async ({email, password, username, name}: SignupCredential
     if (name === "") {
         errors.push("name")
     } 
+
+
     
     let formattedStringLoop = "";
 
@@ -120,6 +122,16 @@ const SignupHandler = async ({email, password, username, name}: SignupCredential
         }
         return res
     } else {
+        const emailStatus = CheckEmail(email)
+        if (email === "" || !emailStatus) {
+            // errors.push("emails")
+            const res: Result = {
+                success: false,
+                message: "email is invalid"
+            }
+            return res
+        } 
+    
         const res: Result = {
             success: true,
             message: "signed in"
