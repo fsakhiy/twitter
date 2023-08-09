@@ -1,9 +1,6 @@
 "use client"
-import { useState, ChangeEvent } from "react"
-import Modal from "@/components/modal"
-import toast, { Toaster } from "react-hot-toast"
-import LoginIcon from '@mui/icons-material/Login';
-import {LoginHandler} from '@/app/auth/action'
+import { useState} from "react"
+import { Toaster } from "react-hot-toast"
 import SignupModal from "@/components/signupModal";
 import LoginModal from "@/components/loginModal";
 
@@ -11,7 +8,6 @@ const HomePage = () => {
 
   const [isLoginOpen, setIsLoginOpen] = useState(false)
   const [isSignupOpen, setIsSignupOpen] = useState(false)
-  // const [name, setName] = useState("")
 
   const openLogin = () => {
     setIsLoginOpen(true)

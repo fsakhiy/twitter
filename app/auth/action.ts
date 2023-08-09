@@ -19,11 +19,6 @@ interface Result {
     message: string
 }
 
-interface NewResult {
-    success: boolean
-    message: string
-    fields: string[]
-}
 
 const LoginHandler = async ({email, password}: LoginCredentials): Promise<Result> => {
     let errors: string[] = []

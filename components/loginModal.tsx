@@ -2,7 +2,7 @@ import Modal from "@/components/modal"
 import {ChangeEvent, useState} from 'react'
 import LoginIcon from '@mui/icons-material/Login'
 import { LoginHandler } from "@/app/auth/action"
-import toast, { Toaster } from "react-hot-toast"
+import toast from "react-hot-toast"
 import CheckEmail from "@/pkg/checkEmail"
 
 interface Modal {
@@ -80,7 +80,6 @@ const LoginModal: React.FC<Modal> = ({isOpen, onClose}) => {
     return (
         <Modal isOpen={isOpen} onClose={onClose} title="Login">
             <div className="flex flex-col gap-10 ">
-            {/* <Toaster /> */}
                 <div className="flex flex-col gap-5">
                     <input className={`p-5 outline-none border rounded-xl ${validation.emailValidation ? `border-red-500` : `border-neutral-300`} bg-neutral-950 focus:border-blue-500 transition-all` } value={value.email} onChange={handleInputChange} type="email" name="email" id="email" placeholder="email" />
                     <input className={`p-5 outline-none border rounded-xl ${validation.passwordValidation ? `border-red-500` : `border-neutral-300`} bg-neutral-950 focus:border-blue-500 transition-all` } value={value.password} onChange={handleInputChange} type="password" name="password" id="password" placeholder="password" />

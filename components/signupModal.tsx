@@ -2,7 +2,7 @@ import Modal from "@/components/modal"
 import {ChangeEvent, useState} from 'react'
 import LoginIcon from '@mui/icons-material/Login'
 import { SignupHandler } from "@/app/auth/action"
-import toast, { Toaster } from "react-hot-toast"
+import toast from "react-hot-toast"
 import CheckEmail from "@/pkg/checkEmail"
 
 interface Modal {
@@ -79,7 +79,6 @@ const SignupModal: React.FC<Modal> = ({isOpen, onClose}) => {
             updateValidation('password', value.password.trim().toLocaleLowerCase() === '')
         } 
                 
-        // Continue with signup process
         const status = await SignupHandler(value);
         if (!status.success) {
           toast.error(status.message, { id: loading });
@@ -95,7 +94,6 @@ const SignupModal: React.FC<Modal> = ({isOpen, onClose}) => {
     return (
         <Modal isOpen={isOpen} onClose={onClose} title="Signup">
             <div className="flex flex-col gap-10 ">
-            {/* <Toaster /> */}
                 <div className="flex flex-col gap-5">
                     <input className={`p-5 outline-none border rounded-xl  bg-neutral-950 ${validation.nameValidation ? `border-red-500` : `border-neutral-300`} focus:border-blue-500 transition-all`} value={value.name} onChange={handleInputChange} type="text" name="name" id="name" placeholder="name" />
                     <input className={`p-5 outline-none border rounded-xl ${validation.usernameValidation ? `border-red-500` : `border-neutral-300`} bg-neutral-950 focus:border-blue-500 transition-all` }value={value.username} onChange={handleInputChange} type="text" name="username" id="username" placeholder="username" />
