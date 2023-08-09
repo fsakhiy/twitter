@@ -15,7 +15,7 @@ const Modal: React.FC<ModalProps> = ({isOpen, onClose, children, title}) => {
     return (
         // <div className="fixed inset-0 flex items-center justify-center z-50 ">
         <div className="fixed inset-0 flex items-center justify-center z-50 transition-opacity ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}">
-            <Toaster />
+            {/* <Toaster /> */}
           <div className="absolute inset-0 backdrop-blur-md backdrop-filter bg-opacity-50 bg-gray-800" onClick={onClose}></div>
             <div className="bg-neutral-950 p-10 rounded-xl shadow-xl z-10 w-full max-w-lg gap-16 transform transition-transform duration-500 ease-in-out">
                 {/* <div className='right-0'><CloseIcon /></div> */}
