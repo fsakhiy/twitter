@@ -22,8 +22,8 @@ const Home = () => {
                     <UserCard name="fairuz" username="@fairuz" photo="placeholder.jpg" />
                 </div>
             </div>
-            <div className="w-5/12 border border-neutral-700 min-s-screen justify-center p-5">THIS IS A DIV</div>
-            <div className="w-3/12 min-s-screen justify-start text-left p-5">THIS IS A DIV</div>
+            <div className="w-5/12 border border-neutral-700 min-s-screen justify-center p-5">This is gonna be the main feed</div>
+            <div className="w-3/12 min-s-screen justify-start text-left p-5">this is gonna be trending and about</div>
             <div className="w-1/12">
 
             </div>

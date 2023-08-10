@@ -14,8 +14,8 @@ const UserCard: React.FC<UserInfo> = ({username, photo, name}): ReactNode => {
                 <Image className="rounded-full" src={`/pfp/${photo}`} width={100} height={100} alt={`${photo}`} />
             </div>
             <div className="w-full  justify-center  flex flex-col">
-                <div className=" font-semibold text-lg"><p>{name}</p></div>
-                <div className=" text-neutral-500"><p>{username}</p></div>
+                <div className="font-semibold text-lg"><p>{name}</p></div>
+                <div className="text-neutral-500"><p>{username}</p></div>
             </div>
         </div>
     )
