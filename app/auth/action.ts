@@ -33,12 +33,15 @@ const LoginHandler = async ({email, password}: LoginCredentials): Promise<Result
     let formattedStringLoop = "";
 
     for (let i = 0; i < errors.length; i++) {
-      formattedStringLoop += errors[i];
-      if (i < errors.length - 1) {
-        formattedStringLoop += " & ";
-      }
+        formattedStringLoop += errors[i];
+        if (i < errors.length - 2) {
+          formattedStringLoop += ", ";
+        }
+        if (i == errors.length - 2) {
+          formattedStringLoop += " and ";
+        }
     }
-
+  
     formattedStringLoop += " are required";
     if (errors.length != 0) {
         const res: Result = {
@@ -87,8 +90,11 @@ const SignupHandler = async ({email, password, username, name}: SignupCredential
 
     for (let i = 0; i < errors.length; i++) {
       formattedStringLoop += errors[i];
-      if (i < errors.length - 1) {
-        formattedStringLoop += " & ";
+      if (i < errors.length - 2) {
+        formattedStringLoop += ", ";
+      }
+      if (i == errors.length - 2) {
+        formattedStringLoop += " and ";
       }
     }
 

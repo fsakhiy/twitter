@@ -50,7 +50,11 @@ const LoginModal: React.FC<Modal> = ({isOpen, onClose}) => {
     }
 
     const login = async () => {
-        const loading = toast.loading('logging you in');
+        const loading = toast.loading('logging you in', {style: {
+            borderRadius: '10px',
+            background: '#262626',
+            color: '#fff'
+        }});
         
         const emailStatus = CheckEmail(value.email)
         if (!emailStatus) {

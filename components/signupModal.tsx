@@ -59,7 +59,11 @@ const SignupModal: React.FC<Modal> = ({isOpen, onClose}) => {
     }
 
     const signup = async () => {
-        const loading = toast.loading('Signing you up');
+        const loading = toast.loading('Signing you up', {style: {
+            borderRadius: '10px',
+            background: '#262626',
+            color: '#fff'
+        }});
         
         const emailStatus = CheckEmail(value.email)
         if (!emailStatus) {
