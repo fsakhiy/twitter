@@ -1,11 +1,15 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter, REM } from 'next/font/google'
+import { Inter, REM, Prompt } from 'next/font/google'
 
 const inter = Inter({ subsets: ['latin'] })
 const rem = REM({
   subsets: ['latin'],
   weight: ["400", "600", "700"]
+})
+const prompt = Prompt({
+  subsets: ['latin'],
+  weight: ['400', '600', '700']
 })
 
 export const metadata: Metadata = {
@@ -20,7 +24,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={rem.className}>{children}</body>
+      <body className={prompt.className}>{children}</body>
     </html>
   )
 }
