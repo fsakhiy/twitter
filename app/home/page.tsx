@@ -36,7 +36,7 @@ const Home = () => {
                 </div>
                 <CreateTweet photo="placeholder.jpg"/>
                 <div className="">
-                    <TweetCard name="Fairuz Sakhiy" username="fairuz" photo="placeholder.jpg" totalReply={73} likes={100} tweet="hello world how are you guys doing hope you guys are doing fantastic, cus i am haha. anyway i have 1000 iphone to give away to you guys for free! click the link https://instagram.com/fsakhiy" />
+                    <TweetCard name="Fairuz Sakhiy" username="fairuz" photo="placeholder.jpg" totalReply={73} likes={100} tweet="hello from the first fake tweet" />
                 </div>
                 
             </div>
