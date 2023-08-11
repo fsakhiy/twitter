@@ -18,6 +18,8 @@ model User {
   password  String
   Post      Post[]
   Likes     Likes[]
+  Follower  Follow[] @relation("Follower")
+  Following Follow[] @relation("Following")
 }
 
 model Post {
@@ -36,4 +38,13 @@ model Likes {
   user      User     @relation(fields: [userId], references: [id])
   postId    Int
   post      Post     @relation(fields: [postId], references: [id])
+}
+
+model Follow {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  followerId  Int
+  follower    User     @relation("Follower", fields: [followerId], references: [id])
+  followingId Int
+  Following   User     @relation("Following", fields: [followingId], references: [id])
 }
