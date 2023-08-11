@@ -1,6 +1,7 @@
 "use server"
 
 import CheckEmail from "@/pkg/checkEmail"
+import {prisma} from "@/pkg/database"
 
 interface LoginCredentials {
     email: string

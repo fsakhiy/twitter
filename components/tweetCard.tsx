@@ -1,40 +1,48 @@
-import React, { useRef } from 'react';
-import Image from 'next/image';
+import Image from 'next/image'
+import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
+// import 
+import ReplyOutlinedIcon from '@mui/icons-material/ReplyOutlined';
 
 interface TweetProps {
+    name: string
+    username: string
     photo: string
+    tweet: string
+    likes: number
+    totalReply: number
 }
 
-const TweetCard: React.FC<TweetProps> = ({photo}) => {
-  const textAreaRef = useRef<HTMLTextAreaElement>(null);
-
-  const handleInput = () => {
-    if (textAreaRef.current) {
-      textAreaRef.current.style.height = 'auto';
-      textAreaRef.current.style.height = textAreaRef.current.scrollHeight + 'px';
-    }
-  };
-
-  return (
-    <div className='flex flex-row gap-3 w-full border-b-2 border-neutral-700 p-10'>
-        <div>
-            <Image className="rounded-full" src={`/pfp/${photo}`} width={50} height={50} alt={`${photo}`} />
-        </div>
-        <div className='flex flex-col gap-3 w-full'>
-            <div className='p-3 border-b-2 border-neutral-700'>
-                <textarea
-                  ref={textAreaRef}
-                  className="resize-none outline-none placeholder:text-lg placeholder:text-neutral-600 bg-neutral-950 w-full h-12 p-2 rounded-md overflow-hidden"
-                  onInput={handleInput}
-                  placeholder="Whats on your mind..."
-                ></textarea>
+const TweetCard: React.FC<TweetProps> = ({name, username, photo, tweet, likes, totalReply}) => {
+    return (
+        <div className="p-5 flex flex-col gap-5 w-full border-b border-neutral-700">
+            <div className='flex flex-row gap-3'>
+                <div className="flex gap-3 w-1/12">
+                    <div>
+                        <Image className="rounded-full" src={`/pfp/${photo}`} width={50} height={50} alt={`${photo}`} />
+                    </div>
+                </div>
+                <div className='flex flex-col gap-5 w-11/12'>
+                    <div className="flex flex-row gap-3">
+                        <div className="font-semibold">{name}</div>
+                        <div className="text-neutral-700">@{username}</div>
+                    </div>
+                    <div>
+                        <p>{tweet}</p>
+                    </div>
+                </div>
             </div>
-            <div className='flex justify-end w-full'>
-                <button className='bg-blue-500 p-2 font-semibold text-lg rounded-full w-20'>Post</button>
+            <div className='w-full justify-end flex flex-row gap-10'>
+                <div className='flex flex-row gap-3'>
+                    <p>{totalReply}</p>
+                    <ReplyOutlinedIcon fontSize='small' />
+                </div>
+                <div className='flex flex-row gap-3'>
+                    <p>{likes}</p>
+                    <FavoriteOutlinedIcon fontSize='small' />
+                </div>
             </div>
         </div>
-    </div>
-  );
-};
+    )
+}
 
-export default TweetCard;
+export default TweetCard

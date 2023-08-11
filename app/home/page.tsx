@@ -1,6 +1,7 @@
 "use client"
 import UserCard from "@/components/userCard"
 import LinkCards from "@/components/linkCards"
+import CreateTweet from "@/components/createTweet"
 import TweetCard from "@/components/tweetCard"
 
 const Home = () => {
@@ -33,39 +34,9 @@ const Home = () => {
                 <div className="p-5 border-b-2 border-neutral-700 text-xl font-bold">
                     Home
                 </div>
-                <TweetCard photo="placeholder.jpg"/>
-                <div className="p-5">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, enim? Aut, consectetur numquam reiciendis eos saepe inventore sequi voluptatem doloribus laboriosam. Est aperiam cum magni eaque repellendus ullam aliquid praesentium?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, enim? Aut, consectetur numquam reiciendis eos saepe inventore sequi voluptatem doloribus laboriosam. Est aperiam cum magni eaque repellendus ullam aliquid praesentium?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, enim? Aut, consectetur numquam reiciendis eos saepe inventore sequi voluptatem doloribus laboriosam. Est aperiam cum magni eaque repellendus ullam aliquid praesentium?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, enim? Aut, consectetur numquam reiciendis eos saepe inventore sequi voluptatem doloribus laboriosam. Est aperiam cum magni eaque repellendus ullam aliquid praesentium?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, enim? Aut, consectetur numquam reiciendis eos saepe inventore sequi voluptatem doloribus laboriosam. Est aperiam cum magni eaque repellendus ullam aliquid praesentium?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, enim? Aut, consectetur numquam reiciendis eos saepe inventore sequi voluptatem doloribus laboriosam. Est aperiam cum magni eaque repellendus ullam aliquid praesentium?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, enim? Aut, consectetur numquam reiciendis eos saepe inventore sequi voluptatem doloribus laboriosam. Est aperiam cum magni eaque repellendus ullam aliquid praesentium?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, enim? Aut, consectetur numquam reiciendis eos saepe inventore sequi voluptatem doloribus laboriosam. Est aperiam cum magni eaque repellendus ullam aliquid praesentium?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, enim? Aut, consectetur numquam reiciendis eos saepe inventore sequi voluptatem doloribus laboriosam. Est aperiam cum magni eaque repellendus ullam aliquid praesentium?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, enim? Aut, consectetur numquam reiciendis eos saepe inventore sequi voluptatem doloribus laboriosam. Est aperiam cum magni eaque repellendus ullam aliquid praesentium?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, enim? Aut, consectetur numquam reiciendis eos saepe inventore sequi voluptatem doloribus laboriosam. Est aperiam cum magni eaque repellendus ullam aliquid praesentium?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, enim? Aut, consectetur numquam reiciendis eos saepe inventore sequi voluptatem doloribus laboriosam. Est aperiam cum magni eaque repellendus ullam aliquid praesentium?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, enim? Aut, consectetur numquam reiciendis eos saepe inventore sequi voluptatem doloribus laboriosam. Est aperiam cum magni eaque repellendus ullam aliquid praesentium?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, enim? Aut, consectetur numquam reiciendis eos saepe inventore sequi voluptatem doloribus laboriosam. Est aperiam cum magni eaque repellendus ullam aliquid praesentium?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, enim? Aut, consectetur numquam reiciendis eos saepe inventore sequi voluptatem doloribus laboriosam. Est aperiam cum magni eaque repellendus ullam aliquid praesentium?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, enim? Aut, consectetur numquam reiciendis eos saepe inventore sequi voluptatem doloribus laboriosam. Est aperiam cum magni eaque repellendus ullam aliquid praesentium?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, enim? Aut, consectetur numquam reiciendis eos saepe inventore sequi voluptatem doloribus laboriosam. Est aperiam cum magni eaque repellendus ullam aliquid praesentium?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, enim? Aut, consectetur numquam reiciendis eos saepe inventore sequi voluptatem doloribus laboriosam. Est aperiam cum magni eaque repellendus ullam aliquid praesentium?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, enim? Aut, consectetur numquam reiciendis eos saepe inventore sequi voluptatem doloribus laboriosam. Est aperiam cum magni eaque repellendus ullam aliquid praesentium?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, enim? Aut, consectetur numquam reiciendis eos saepe inventore sequi voluptatem doloribus laboriosam. Est aperiam cum magni eaque repellendus ullam aliquid praesentium?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, enim? Aut, consectetur numquam reiciendis eos saepe inventore sequi voluptatem doloribus laboriosam. Est aperiam cum magni eaque repellendus ullam aliquid praesentium?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, enim? Aut, consectetur numquam reiciendis eos saepe inventore sequi voluptatem doloribus laboriosam. Est aperiam cum magni eaque repellendus ullam aliquid praesentium?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, enim? Aut, consectetur numquam reiciendis eos saepe inventore sequi voluptatem doloribus laboriosam. Est aperiam cum magni eaque repellendus ullam aliquid praesentium?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, enim? Aut, consectetur numquam reiciendis eos saepe inventore sequi voluptatem doloribus laboriosam. Est aperiam cum magni eaque repellendus ullam aliquid praesentium?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, enim? Aut, consectetur numquam reiciendis eos saepe inventore sequi voluptatem doloribus laboriosam. Est aperiam cum magni eaque repellendus ullam aliquid praesentium?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, enim? Aut, consectetur numquam reiciendis eos saepe inventore sequi voluptatem doloribus laboriosam. Est aperiam cum magni eaque repellendus ullam aliquid praesentium?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, enim? Aut, consectetur numquam reiciendis eos saepe inventore sequi voluptatem doloribus laboriosam. Est aperiam cum magni eaque repellendus ullam aliquid praesentium?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, enim? Aut, consectetur numquam reiciendis eos saepe inventore sequi voluptatem doloribus laboriosam. Est aperiam cum magni eaque repellendus ullam aliquid praesentium?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, enim? Aut, consectetur numquam reiciendis eos saepe inventore sequi voluptatem doloribus laboriosam. Est aperiam cum magni eaque repellendus ullam aliquid praesentium?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, enim? Aut, consectetur numquam reiciendis eos saepe inventore sequi voluptatem doloribus laboriosam. Est aperiam cum magni eaque repellendus ullam aliquid praesentium?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, enim? Aut, consectetur numquam reiciendis eos saepe inventore sequi voluptatem doloribus laboriosam. Est aperiam cum magni eaque repellendus ullam aliquid praesentium?
+                <CreateTweet photo="placeholder.jpg"/>
+                <div className="">
+                    <TweetCard name="Fairuz Sakhiy" username="fairuz" photo="placeholder.jpg" totalReply={73} likes={100} tweet="hello world how are you guys doing hope you guys are doing fantastic, cus i am haha. anyway i have 1000 iphone to give away to you guys for free! click the link https://instagram.com/fsakhiy" />
                 </div>
                 
             </div>
