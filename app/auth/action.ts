@@ -2,6 +2,8 @@
 
 import CheckEmail from "@/pkg/checkEmail"
 import {prisma} from "@/pkg/database"
+import { Prisma } from "@prisma/client"
+import bcrypt from 'bcrypt'
 
 interface LoginCredentials {
     email: string
@@ -108,7 +110,7 @@ const SignupHandler = async ({email, password, username, name}: SignupCredential
         return res
     } else {
         const emailStatus = CheckEmail(email)
-        if (email === "" || !emailStatus) {
+        if (!emailStatus) {
             // errors.push("emails")
             const res: Result = {
                 success: false,
@@ -116,10 +118,45 @@ const SignupHandler = async ({email, password, username, name}: SignupCredential
             }
             return res
         } 
+
+        const hashedPassword = await bcrypt.hash(password, 12)
+        try {
+            await prisma.user.create({
+                data: {
+                    name: name,
+                    username: username,
+                    password: hashedPassword,
+                    email: email,
+                }
+            })
+        } catch (e) {
+            if (e instanceof Prisma.PrismaClientKnownRequestError) {
+                if (e.code === 'P2002') {
+                    if ((e.meta as {target: [string]}).target.includes('email')) {
+                        const res:Result = {
+                            success: false,
+                            message: 'email already exists'
+                        }
+                        return res
+
+                    }
+                    if ((e.meta as {target: [string]}).target.includes('username')) {
+                        const res:Result = {
+                            success: false,
+                            message: 'username already exists'
+                        }
+
+                        return res
+                    }
+                }
+            }
+
+            // throw e
+        }
     
         const res: Result = {
             success: true,
-            message: "signed in"
+            message: "user created"
         }
         return res
     }
