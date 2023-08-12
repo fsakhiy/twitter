@@ -1,13 +1,35 @@
-"use client"
 import UserCard from "@/components/userCard"
 import LinkCards from "@/components/linkCards"
 import CreateTweet from "@/components/createTweet"
 import TweetCard from "@/components/tweetCard"
+import { Toaster } from "react-hot-toast"
+// import { retrieveAllTweet } from "@/app/tweet/action"
+import { prisma } from "@/pkg/database"
 
-const Home = () => {
+const Home = async () => {        
+    
+    const data = await prisma.post.findMany({
+        select: {
+            id: true,
+            post: true,
+            Likes: {
+                select: {
+                    id: true
+                }
+            },
+            user: {
+                select: {
+                    name: true,
+                    username: true,
+                    id: true,
+                }
+            }
+        }
+    })
+        
     return (
         <div className="w-full min-h-screen flex flex-row bg-neutral-950 text-white">
-
+            <Toaster />
             {/** this is gonna be the navigation */}
             <div className="2xl:visible invisible 2xl:w-1/12">
                 
@@ -25,6 +47,7 @@ const Home = () => {
                 </div>
                 <div className="flex-none">
                     <UserCard name="fairuz" username="@fairuz" photo="placeholder.jpg" />
+                                        
                 </div>
             </div>
 
@@ -36,9 +59,14 @@ const Home = () => {
                 </div>
                 <CreateTweet photo="placeholder.jpg"/>
                 <div className="">
-                    <TweetCard name="Fairuz Sakhiy" username="fairuz" photo="placeholder.jpg" totalReply={73} likes={100} tweet="hello from the first fake tweet" />
+                 
+                    {data.map((post) => (
+                        <TweetCard key={post.id} postId={post.id} userId={post.user.id} likes={post.Likes.length} photo="placeholder.jpg" name={post.user.name} username={post.user.username} tweet={JSON.parse(post.post).split("\n").map((element: string) => (<>{element}<br /></>))} totalReply={100} />
+                    ))}
+
                 </div>
                 
+
             </div>
             
             

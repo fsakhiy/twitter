@@ -1,3 +1,4 @@
+"use client"
 import Modal from "@/components/modal"
 import {ChangeEvent, useState} from 'react'
 import LoginIcon from '@mui/icons-material/Login'

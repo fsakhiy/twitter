@@ -1,18 +1,40 @@
+"use client"
 import Image from 'next/image'
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 // import 
 import ReplyOutlinedIcon from '@mui/icons-material/ReplyOutlined';
+import { ReactNode } from 'react';
+import { likeTweet } from '@/app/tweet/action';
+import toast from 'react-hot-toast';
 
 interface TweetProps {
+    userId: number
+    postId: number
     name: string
     username: string
     photo: string
-    tweet: string
+    tweet: ReactNode
     likes: number
     totalReply: number
 }
 
-const TweetCard: React.FC<TweetProps> = ({name, username, photo, tweet, likes, totalReply}) => {
+interface TweetLike {
+    userId: number
+    postId: number
+}
+
+const TweetCard: React.FC<TweetProps> = ({userId, postId, name, username, photo, tweet, likes, totalReply}) => {
+
+    const likeATweet = async () => {        
+        const likeData: TweetLike = {
+            userId: userId,
+            postId: postId
+        }
+        
+        await likeTweet(likeData)
+        toast.success('liked a post from ' + username)
+    }
+    
     return (
         <div className="p-5 flex flex-col gap-5 w-full border-b border-neutral-700">
             <div className='flex flex-row gap-3'>
@@ -24,7 +46,7 @@ const TweetCard: React.FC<TweetProps> = ({name, username, photo, tweet, likes, t
                 <div className='flex flex-col gap-5 w-11/12'>
                     <div className="flex flex-row gap-3">
                         <div className="font-semibold">{name}</div>
-                        <div className="text-neutral-700">@{username}</div>
+                        <div className="text-neutral-500">@{username}</div>
                     </div>
                     <div>
                         <p>{tweet}</p>
@@ -38,7 +60,7 @@ const TweetCard: React.FC<TweetProps> = ({name, username, photo, tweet, likes, t
                 </div>
                 <div className='flex flex-row gap-3'>
                     <p>{likes}</p>
-                    <FavoriteOutlinedIcon fontSize='small' />
+                    <button onClick={likeATweet}><p className='hidden'>Likes</p><FavoriteOutlinedIcon fontSize='small' /></button>
                 </div>
             </div>
         </div>

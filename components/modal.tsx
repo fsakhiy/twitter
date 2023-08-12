@@ -1,3 +1,4 @@
+"use client"
 import { ReactNode, useState } from 'react'
 import CloseIcon from '@mui/icons-material/Close';
 import { Toaster } from 'react-hot-toast'

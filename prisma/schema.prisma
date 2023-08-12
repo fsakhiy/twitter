@@ -34,10 +34,11 @@ model Post {
 model Likes {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
-  userId    Int
+  userId    Int 
   user      User     @relation(fields: [userId], references: [id])
-  postId    Int
+  postId    Int 
   post      Post     @relation(fields: [postId], references: [id])
+  @@unique([postId, userId])
 }
 
 model Follow {
