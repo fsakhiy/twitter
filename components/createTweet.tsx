@@ -33,7 +33,7 @@ const CreateTweet: React.FC<TweetProps> = ({photo}) => {
     const loading = toast.loading("uploading tweet")
     const textJson = JSON.stringify(text)
     const tweetSubmit: TweetPropsSubmit = {
-      userId: 8,
+      userId: 1 ,
       content: textJson
     }
     const res = await uploadTweet(tweetSubmit)
