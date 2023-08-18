@@ -17,10 +17,12 @@ model User {
   name      String
   username  String   @unique
   password  String
-  Post      Post[]
-  Likes     Likes[]
+  photo     String   @default("placeholder.jpg")
+  about     String?
   Follower  Follow[] @relation("Follower")
   Following Follow[] @relation("Following")
+  Likes     Likes[]
+  Post      Post[]
 }
 
 model Post {
@@ -29,17 +31,17 @@ model Post {
   createdAt DateTime @default(now())
   post      String
   userId    Int
-  user      User     @relation(fields: [userId], references: [id])
   Likes     Likes[]
+  user      User     @relation(fields: [userId], references: [id])
 }
 
 model Likes {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   userId    Int
-  user      User     @relation(fields: [userId], references: [id])
   postId    Int
   post      Post     @relation(fields: [postId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
 
   @@unique([postId, userId])
 }
@@ -48,7 +50,7 @@ model Follow {
   id          Int      @id @default(autoincrement())
   createdAt   DateTime @default(now())
   followerId  Int
-  follower    User     @relation("Follower", fields: [followerId], references: [id])
   followingId Int
+  follower    User     @relation("Follower", fields: [followerId], references: [id])
   Following   User     @relation("Following", fields: [followingId], references: [id])
 }

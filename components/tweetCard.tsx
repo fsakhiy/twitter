@@ -6,6 +6,7 @@ import ReplyOutlinedIcon from '@mui/icons-material/ReplyOutlined';
 import { ReactNode } from 'react';
 import { likeTweet } from '@/app/tweet/action';
 import toast from 'react-hot-toast';
+import Link from 'next/link';
 
 interface TweetProps {
     userId: number
@@ -39,9 +40,9 @@ const TweetCard: React.FC<TweetProps> = ({userId, postId, name, username, photo,
         <div className="p-5 flex flex-col gap-5 w-full border-b border-neutral-700">
             <div className='flex flex-row gap-3'>
                 <div className="flex gap-3 w-1/12">
-                    <div>
+                    <Link href={`/home/user/${username}`}>
                         <Image className="rounded-full" src={`/pfp/${photo}`} width={50} height={50} alt={`${photo}`} />
-                    </div>
+                    </Link>
                 </div>
                 <div className='flex flex-col gap-5 w-11/12'>
                     <div className="flex flex-row gap-3">
