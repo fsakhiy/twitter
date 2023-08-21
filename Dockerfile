@@ -15,12 +15,18 @@ RUN \
   else echo "Lockfile not found." && exit 1; \
   fi
 
+RUN npm install -g prisma
+COPY prisma/schema.prisma ./prisma/
+COPY prisma ./prisma/
+
 
 # Rebuild the source code only when needed
 FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+
+RUN npx prisma migrate deploy
 
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
